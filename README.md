@@ -7,3 +7,5 @@ Il faut lancer l'executable `mongod` pour démarrer le serveur de base de donné
 `yarn start:server` - pour lancer le serveur NodeJS
 
 `yarn start` - pour lancer l'application ReactJS
+
+![front_page](./img.JPG) 
