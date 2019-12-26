@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 import socketIOClient from "socket.io-client";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
-import './app.css';
 
-toast.configure();
-
-const App = ({ getData, information, changeValue, modifyData, endpoint }) => {
+const Body = ({ getData, information, changeValue, modifyData, endpoint }) => {
   // state for modal
   const [show, setShow] = useState(false);
   const [currentItem, setCurrentItem] = useState({});
@@ -35,7 +32,6 @@ const App = ({ getData, information, changeValue, modifyData, endpoint }) => {
 
   return (
     <>
-    <ToastContainer autoClose={5000} />
     <Button variant="success" className="add-btn" onClick={handleShow}>Créer une commande</Button>
       <Table className="table-data" striped bordered hover size="sm" >
         <thead>
@@ -113,4 +109,4 @@ const App = ({ getData, information, changeValue, modifyData, endpoint }) => {
 );
 }
 
-export default App;
+export default Body;

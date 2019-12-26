@@ -2,8 +2,8 @@
 import { connect } from 'react-redux';
 
 // == Import : local
-import App from '../App';
-import { getData, changeInput, modifyData } from '../store/reducer';
+import Body from '../../components/Body';
+import { getData, changeInput, modifyData } from '../../store/reducer';
 
 const mapStateToProps = (state) => ({
     information: state.information,
@@ -26,10 +26,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // Container
-const AppContainer = connect(
+const BodyContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(Body);
 
 // == Export
-export default AppContainer;
+export default BodyContainer;

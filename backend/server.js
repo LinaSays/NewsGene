@@ -8,7 +8,8 @@ const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
 const io = socketIo(server);
-
+const axios = require('axios');
+const convert = require('xml-js');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -60,6 +61,18 @@ app.post('/update', (req, res) => {
     return res.redirect('/');
   });
 });
+
+app.get('/figaro', (req, res) => {
+  axios.get('https://www.lefigaro.fr/sitemap_news.xml')
+  .then((response) => {
+    const result = convert.xml2js(response.data, {compact: true, spaces: 4});
+    const information = result.urlset.url;
+    return res.send(information);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+})
 
 
 io.on('connection', socket => {

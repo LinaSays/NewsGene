@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_DATA, showData, MODIFY_DATA } from './reducer';
+import { GET_DATA, showData, MODIFY_DATA, GET_FIGARO } from './reducer';
 
 const API_URI = 'http://localhost:3001';
 
@@ -23,6 +23,18 @@ const homeMiddleware = (store) => (next) => (action) => {
       const id = action.id;
       axios.post(`${API_URI}/update`, {id, statut, sujet, redacteur_nom, redacteur_prenom, client_nom, sr_nom, sr_prenom })
         .then((response) => {
+          const save = showData(response.data);
+          store.dispatch(save);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      break;
+    }
+    case GET_FIGARO: {
+      axios.get(`${API_URI}/figaro`)
+        .then((response) => {
+          console.log(response);
           const save = showData(response.data);
           store.dispatch(save);
         })

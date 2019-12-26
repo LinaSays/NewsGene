@@ -9,6 +9,7 @@ export const GET_DATA = 'GET_DATA';
 const SHOW_DATA = 'SHOW_DATA';
 const CHANGE_INPUT = 'CHANGE_INPUT';
 export const MODIFY_DATA = 'MODIFY_DATA';
+export const GET_FIGARO = 'GET_FIGARO';
 
   // - Reducer
   const reducer = (state = initialState, action = {}) => {
@@ -48,6 +49,10 @@ export const MODIFY_DATA = 'MODIFY_DATA';
     type: MODIFY_DATA,
     id
   });
+
+  export const getFigaro = () => ({
+    type: GET_FIGARO,
+  })
   
   // - Export
   export default reducer;
