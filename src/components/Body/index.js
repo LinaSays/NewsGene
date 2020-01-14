@@ -109,7 +109,13 @@ const Body = ({ getData, information, changeValue, modifyData, endpoint }) => {
             </Form.Group>
             <Form.Group>
               <Form.Label htmlFor="statut">Statut</Form.Label>
-              <Form.Control type="text" name="statut" id="statut" defaultValue={currentItem.statut} onChange={handleChange} placeholder="Statut"/>
+              <Form.Control as="select" name="statut" id="statut" defaultValue={currentItem.statut} onChange={handleChange} placeholder="Statut">
+                <option>Non Publié</option>
+                <option>Publié</option>
+                <option>Envoyé</option>
+                <option>En cours</option>
+                <option>Relu</option>
+              </Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>
