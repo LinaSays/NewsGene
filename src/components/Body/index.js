@@ -3,9 +3,11 @@ import { Table, Button, Modal, Form } from 'react-bootstrap';
 import socketIOClient from "socket.io-client";
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 
-const Body = ({ getData, information, changeValue, modifyData, endpoint }) => {
+const Body = ({ getData, information, changeValue, modifyData, endpoint, deleteData }) => {
   // state for modal
   const [show, setShow] = useState(false);
   const [currentItem, setCurrentItem] = useState({});
@@ -24,7 +26,7 @@ const Body = ({ getData, information, changeValue, modifyData, endpoint }) => {
     changeValue(name, value);
   };
 
-  // modify info
+  // edit info
   const modifyItem = (id) => (event) => {
     event.preventDefault();
     if (document.getElementById('sujet').value.length === 0) {
@@ -45,6 +47,11 @@ const Body = ({ getData, information, changeValue, modifyData, endpoint }) => {
       modifyData(id);
       setShow(false);
     }
+  };
+
+  const deleteItem = (id) => (event) => {
+    event.preventDefault();
+    deleteData(id);
   };
 
   return (
@@ -73,7 +80,10 @@ const Body = ({ getData, information, changeValue, modifyData, endpoint }) => {
             <td>{item.sr_prenom} {item.sr_nom}</td>
             <td>{item.client_nom}</td>
             <td>{item.statut}</td>
-            <td><Button onClick={()=> handleShow(item)}>Modifier</Button></td>
+            <td className="btns">
+              <Button className="edit-btn" onClick={()=> handleShow(item)}><FontAwesomeIcon icon={faEdit} /></Button>
+              <Button variant="danger" onClick={deleteItem(item._id)}><FontAwesomeIcon icon={faTrash} /></Button>
+            </td>
           </tr>)
         })}
         </tbody>

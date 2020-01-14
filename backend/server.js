@@ -62,6 +62,16 @@ app.post('/update', (req, res) => {
   });
 });
 
+app.post('/delete', (req, res) => {
+  let { id } = req.body;
+  let message = `Une commande a été supprimé.`;
+  Model.findByIdAndDelete(id, (err, result) => {
+    if (err) return res.json(err);
+    io.sockets.emit('changedMessage', message);
+    return res.status(200).redirect('/');
+  });
+});
+
 app.get('/figaro', (req, res) => {
   axios.get('https://www.lefigaro.fr/sitemap_news.xml')
   .then((response) => {

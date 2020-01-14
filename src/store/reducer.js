@@ -10,6 +10,7 @@ const SHOW_DATA = 'SHOW_DATA';
 const CHANGE_INPUT = 'CHANGE_INPUT';
 export const MODIFY_DATA = 'MODIFY_DATA';
 export const GET_FIGARO = 'GET_FIGARO';
+export const DELETE_DATA = 'DELETE_DATA';
 
   // - Reducer
   const reducer = (state = initialState, action = {}) => {
@@ -47,6 +48,11 @@ export const GET_FIGARO = 'GET_FIGARO';
 
   export const modifyData = (id) => ({
     type: MODIFY_DATA,
+    id
+  });
+
+  export const deleteData = (id) => ({
+    type: DELETE_DATA,
     id
   });
 

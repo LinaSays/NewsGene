@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // == Import : local
 import Body from '../../components/Body';
-import { getData, changeInput, modifyData } from '../../store/reducer';
+import { getData, changeInput, modifyData, deleteData } from '../../store/reducer';
 
 const mapStateToProps = (state) => ({
     information: state.information,
@@ -21,6 +21,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   modifyData: (id) => {
     const action = modifyData(id);
+    dispatch(action);
+  },
+  deleteData: (id) => {
+    const action = deleteData(id);
     dispatch(action);
   },
 });

@@ -6,3 +6,11 @@
 .add-btn {
     margin: 1em 2em;
 }
+
+.btns {
+ width: 100px;
+}
+
+.edit-btn {
+    margin-right: 5px;
+}
