@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { Table } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 
 const Figaro = ({ getFigaro, information }) => {
     useEffect(() => {
     getFigaro();
     return () => getFigaro();
-    }, []);
+    }, [getFigaro]);
 console.log("information",information);
   return (
     <>
@@ -39,5 +40,10 @@ console.log("information",information);
     </>
 );
 }
+
+Figaro.propTypes = {
+  getFigaro: PropTypes.func.isRequired,
+  information: PropTypes.array.isRequired,
+};
 
 export default Figaro;
