@@ -74,7 +74,7 @@ const Body = ({ getData, information, changeValue, modifyData, endpoint, deleteD
         {information.map(item => {
           return (<tr key={item._id}>
             <td>{item.sujet}</td>
-            <td></td>
+            <td>{item.keywords}</td>
             <td>{item.date_creation}</td>
             <td>{item.redacteur_prenom} {item.redacteur_nom}</td>
             <td>{item.sr_prenom} {item.sr_nom}</td>
@@ -98,6 +98,9 @@ const Body = ({ getData, information, changeValue, modifyData, endpoint, deleteD
               <Form.Label htmlFor="sujet">Sujet</Form.Label>
               <Form.Control type="text" name="sujet" id="sujet" defaultValue={currentItem.sujet} onChange={handleChange} placeholder="Sujet"/></Form.Group>
             <Form.Group>
+              <Form.Label htmlFor="keywords">Mots-clés</Form.Label>
+              <Form.Control type="text" name="keywords" id="keywords" defaultValue={currentItem.keywords} onChange={handleChange} placeholder="Mots-clés"/></Form.Group>
+            <Form.Group>
               <Form.Label htmlFor="client_nom">Nom du client</Form.Label>
               <Form.Control type="text" name="client_nom" id="client_nom" defaultValue={currentItem.client_nom} onChange={handleChange} placeholder="Nom du client"/>
             </Form.Group>
@@ -120,6 +123,7 @@ const Body = ({ getData, information, changeValue, modifyData, endpoint, deleteD
             <Form.Group>
               <Form.Label htmlFor="statut">Statut</Form.Label>
               <Form.Control as="select" name="statut" id="statut" defaultValue={currentItem.statut} onChange={handleChange} placeholder="Statut">
+                <option>...</option>
                 <option>Non Publié</option>
                 <option>Publié</option>
                 <option>Envoyé</option>

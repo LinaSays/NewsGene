@@ -24,22 +24,22 @@ const Figaro = ({ getFigaro, information }) => {
           </tr>
         </thead>
         <tbody>
-        {information.map(item => {
-          return (<tr key={item["news:news"]["news:title"]}>
-            <td>{item["news:news"]["news:title"] === undefined
+        {information.slice(0, 20).map(item => {
+          return (<tr key={item["news"]["keywords"]}>
+            <td>{item["news"]["title"] === undefined
                 ? '-'
-                : item["news:news"]["news:title"]._text}</td>
-            <td>{item["news:news"]["news:keywords"] === undefined
+                : item["news"]["title"]}</td>
+            <td>{item["news"]["keywords"] === undefined
                 ? '-'
-                : item["news:news"]["news:keywords"]._text}</td>
-            <td>{item["news:news"]["news:publication_date"] === undefined
+                : item["news"]["keywords"]}</td>
+            <td>{item["news"]["publication_date"] === undefined
                 ? '-'
-                : item["news:news"]["news:publication_date"]._text}</td>
+                : item["news"]["publication_date"]}</td>
             <td></td>
             <td></td>
-            <td>{item["news:news"]["news:publication"]["news:name"] === undefined
+            <td>{item["news"]["publication"]["name"] === undefined
                 ? '-'
-                : item["news:news"]["news:publication"]["news:name"]._text}</td>
+                : item["news"]["publication"]["name"]}</td>
             <td></td>
           </tr>)
         })}

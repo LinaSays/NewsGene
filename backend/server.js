@@ -38,6 +38,7 @@ const Model = mongoose.model('newsgene', new Schema({
   client_nom: String,
   sr_nom: String,
   sr_prenom: String,
+  keywords: String,
 }));
 
 app.get('/', (req, res) => {
@@ -49,15 +50,15 @@ app.get('/', (req, res) => {
 
 app.post('/update', (req, res) => {
   let { id } = req.body;
-  let message = `Une commande a été mise à jour. Veuillez recharger la page.`;
+  //let message = `Une commande a été mise à jour. Veuillez recharger la page.`;
   if (id == null) {
     id = new mongoose.mongo.ObjectID();
     req.body.date_creation = dateFormat(Date.now(), "yyyy-mm-dd HH-MM-ss");
-    message = 'Une commande a été créée. Veuillez recharger la page.';
+    //message = 'Une commande a été créée. Veuillez recharger la page.';
   }
   Model.findByIdAndUpdate(id, {...req.body}, { upsert: true }, (err, result) => {
     if (err) return res.json(err);
-    io.sockets.emit('changedMessage', message);
+    //io.sockets.emit('changedMessage', message);
     return res.redirect('/');
   });
 });
@@ -72,17 +73,17 @@ app.post('/delete', (req, res) => {
   });
 });
 
-app.get('/figaro', (req, res) => {
-  axios.get('https://www.lefigaro.fr/sitemap_news.xml')
-  .then((response) => {
-    const result = convert.xml2js(response.data, {compact: true, spaces: 4});
-    const information = result.urlset.url;
-    return res.send(information);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
-})
+// app.get('/figaro', (req, res) => {
+//   axios.get('https://www.lefigaro.fr/sitemap_news.xml')
+//   .then((response) => {
+//     const result = convert.xml2js(response.data, {compact: true, spaces: 4});
+//     const information = result.urlset.url;
+//     return res.send(information);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+// })
 
 
 io.on('connection', socket => {
@@ -90,7 +91,11 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     console.log('Client disconnected');
   });
+  socket.on('changes', (msg) => {
+    socket.broadcast.emit('message', msg);
+  });
 });
+
 
 const API_PORT = 3001;
 
