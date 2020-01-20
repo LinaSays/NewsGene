@@ -60,7 +60,7 @@ const homeMiddleware = (store) => (next) => (action) => {
       axios.get(`http://localhost/newsgene/backend/figaro.php`)
         .then((response) => {
           console.log(response);
-          const save = showData(response.data.url);
+          const save = showData(response.data);
           store.dispatch(save);
         })
         .catch((error) => {

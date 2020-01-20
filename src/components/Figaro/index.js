@@ -24,7 +24,7 @@ const Figaro = ({ getFigaro, information }) => {
           </tr>
         </thead>
         <tbody>
-        {information.slice(0, 20).map(item => {
+        {information.map(item => {
           return (<tr key={item["news"]["keywords"]}>
             <td>{item["news"]["title"] === undefined
                 ? '-'
