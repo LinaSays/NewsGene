@@ -25,21 +25,16 @@ const Figaro = ({ getFigaro, information }) => {
         </thead>
         <tbody>
         {information.map(item => {
-          return (<tr key={item["news"]["keywords"]}>
-            <td>{item["news"]["title"] === undefined
-                ? '-'
-                : item["news"]["title"]}</td>
-            <td>{item["news"]["keywords"] === undefined
-                ? '-'
-                : item["news"]["keywords"]}</td>
-            <td>{item["news"]["publication_date"] === undefined
-                ? '-'
-                : item["news"]["publication_date"]}</td>
+          return (<tr key={item["title"]}>
+            <td>{item["title"] === undefined ? '-' : item["title"]}</td>
+            <td>{item["verb_title"] === item["verb_url"] ? item["verb_title"]
+            : item["verb_title"] === undefined ? '-' : item["verb_title"]
+            && item["verb_url"] === undefined ? '-' : item["verb_url"]}
+            </td>
+            <td>{item["publication_date"] === undefined ? '-' : item["publication_date"]}</td>
             <td></td>
             <td></td>
-            <td>{item["news"]["publication"]["name"] === undefined
-                ? '-'
-                : item["news"]["publication"]["name"]}</td>
+            <td>{item["name"] === undefined ? '-' : item["name"]}</td>
             <td></td>
           </tr>)
         })}

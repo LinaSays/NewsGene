@@ -51,37 +51,23 @@ app.get('/', (req, res) => {
 app.post('/update', (req, res) => {
   let { id, statut, sujet, redacteur_nom, redacteur_prenom, client_nom, sr_nom, sr_prenom } = req.body;
   //let message = `Une commande a été mise à jour. Veuillez recharger la page.`;
-  var error = false;
   if (statut === undefined || statut === '') {
-    error = true;
     console.log(statut);
     return res.send({error : 'error'});
   } else if (sujet === undefined || sujet === '') {
-    error = true;
-    console.log(error);
     return res.send('Le sujet est vide');  
   } else if (redacteur_nom === undefined || redacteur_nom === '') {
-    error = true;
-    console.log(error);
     return res.send('Le nom du rédacteur est vide');  
   } else if (redacteur_prenom === undefined || redacteur_prenom === '') {
-    error = true;
-    console.log(error);
     return res.send('Le prénom du rédacteur est vide');  
   } else if (client_nom === undefined || client_nom === '') {
-    error = true;
-    console.log(error);
     return res.send('Le nom du client est vide');  
   } else if (sr_nom === undefined || sr_nom === '') {
-    error = true;
-    console.log(error);
     return res.send('Le nom du secrétaire de rédaction est vide');  
   } else if (sr_prenom === undefined || sr_prenom === '') {
-    error = true;
-    console.log(error);
     return res.send('Le prénom du secrétaire de rédaction est vide'); 
   }
-  console.log('continuer');
+  
   if (id == null) {
     id = new mongoose.mongo.ObjectID();
     req.body.date_creation = dateFormat(Date.now(), "yyyy-mm-dd HH-MM-ss");
